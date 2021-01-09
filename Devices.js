@@ -5,21 +5,24 @@ import PropTypes from 'prop-types';
 
 const Device = (props) => {
     const [backgroundColor, setBackgroundColor] = useState('red')
-    const [onDisabled, setOnDisabled] = useState("true")
-    const [offDisabled, setOffDisabled] = useState("true")
+    const [onDisabled, setOnDisabled] = useState(false)
+    const [offDisabled, setOffDisabled] = useState(true)
 
     function on() {
         setBackgroundColor("green")
-        setOnDisabled("true")
-        setOffDisabled("false")
+        setOnDisabled(true)
+        setOffDisabled(false)
+        props.updateData(prevCount => prevCount + 1)
     }
 
     function off() {
         setBackgroundColor("red")
-        setOnDisabled("false")
-        setOffDisabled("true")
+        setOnDisabled(false)
+        setOffDisabled(true)
+        props.updateData(prevCount => prevCount - 1)
+        console.log("on is", onDisabled)
+        console.log("off is", offDisabled)
     }
-
 
     return (
     <View style = {styles.deviceContainer}>
@@ -28,13 +31,9 @@ const Device = (props) => {
         <Text style={ styles.deviceText }>{props.title}</Text>
 
         <View style={{...styles.buttonContainer}}>
-            <Button title="On" disable={onDisabled} onPress={()=> {
-                on()
-            }
+            <Button title="On" disable={onDisabled} onPress={()=> {on() }
             }/>
-            <Button title="Off" disable={offDisabled} onPress={()=> {
-                off()
-            }
+            <Button title="Off" disable={offDisabled} onPress={()=> {off() }
             }
             />
         </View>
@@ -43,12 +42,14 @@ const Device = (props) => {
 }
 
 export default function Devices() {
+    const [devicesOn, updateDevicesOn] = useState(0)
     return (
     <View style={{width: "100%"}}>
         <Text style={styles.text}>Devices</Text>
-        <Device title = "Living Room Lamps"></Device>
-        <Device title = "Heater"></Device>
-        <Device title = "TV"></Device>
+        <Device title = "Living Room Lamps" updateData = {updateDevicesOn}></Device>
+        <Device title = "Heater" updateData = {updateDevicesOn}></Device>
+        <Device title = "TV" updateData = {updateDevicesOn}></Device>
+        <Text fontWeight="bold">Total Devices On: {devicesOn}</Text>
     </View>
     );
   }
@@ -91,6 +92,6 @@ export default function Devices() {
 
     buttonContainer: {
         flexDirection: "column",
-        alignSelf: "flex-end"
+        alignSelf: "center"
     }
   });
