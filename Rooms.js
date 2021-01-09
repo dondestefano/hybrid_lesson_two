@@ -47,12 +47,12 @@ const styles = StyleSheet.create({
     boxRow: {
         flexDirection: "row",
         justifyContent: "space-between",
-        width: "100%"
+        width: "100%",
+        marginVertical: 8,
     },
 
     text: {
         fontSize: 20,
         fontWeight: "bold",
-        marginBottom: 8
     }
   });
