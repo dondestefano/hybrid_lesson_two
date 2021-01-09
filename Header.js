@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
@@ -19,12 +18,11 @@ const styles = StyleSheet.create({
       justifyContent: "flex-start",
       width: "100%",
       height: 70,
-      width: "100%",
       alignItems:"center",
     },
 
     text: {
-        color: "#007c7d",
+        color: "#00b9bc",
         fontWeight: "bold",
         fontSize: 18
     }
