@@ -8,7 +8,7 @@ const kitchen = require("./assets/kitchen.png")
 const Box = ({ icon, text }) => {
     return (
         <View style={styles.boxStyle}>
-            <Image source={icon} style={{ width: 60, height: 60 }}/>
+            <Image source={icon} style={{ width: 75, height: 75 }}/>
             <Text style={{fontSize: 12, marginVertical: 8}}>{text}</Text>
         </View>
     )
@@ -24,7 +24,6 @@ const BoxRow = ({ style}) => {
     )
 };
 
-
 export default function Rooms() {
   return (
     <View style={{width: "100%"}}>
@@ -36,8 +35,8 @@ export default function Rooms() {
 
 const styles = StyleSheet.create({
     boxStyle: {
-      height: 100,
-      width: 80,
+      height: 120,
+      width: 120,
       alignItems:"center",
       flexDirection: "column",
       justifyContent: "flex-end",
@@ -53,6 +52,7 @@ const styles = StyleSheet.create({
 
     text: {
         fontSize: 20,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        marginBottom: 8
     }
   });
