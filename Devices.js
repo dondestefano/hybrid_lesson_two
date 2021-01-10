@@ -20,20 +20,21 @@ const Device = (props) => {
         setOnDisabled(false)
         setOffDisabled(true)
         props.updateData(prevCount => prevCount - 1)
-        console.log("on is", onDisabled)
-        console.log("off is", offDisabled)
     }
 
     return (
     <View style = {styles.deviceContainer}>
-        <View style={{...styles.statusBox, backgroundColor: backgroundColor}}/>
-        
-        <Text style={ styles.deviceText }>{props.title}</Text>
+        <View style = {styles.indicatorContainer}>        
+            <View style={{...styles.statusBox, backgroundColor: backgroundColor}}/>
+    
+            <Text style={ styles.deviceText }>{props.title}</Text>
+        </View>
+
 
         <View style={{...styles.buttonContainer}}>
-            <Button title="On" disable={onDisabled} onPress={()=> {on() }
+            <Button title="On" disabled={onDisabled} onPress={()=> {on() }
             }/>
-            <Button title="Off" disable={offDisabled} onPress={()=> {off() }
+            <Button title="Off" disabled={offDisabled} onPress={()=> {off() }
             }
             />
         </View>
@@ -42,14 +43,14 @@ const Device = (props) => {
 }
 
 export default function Devices() {
-    const [devicesOn, updateDevicesOn] = useState(0)
+    const [devicesOn, updateDevices] = useState(0)
     return (
     <View style={{width: "100%"}}>
         <Text style={styles.text}>Devices</Text>
-        <Device title = "Living Room Lamps" updateData = {updateDevicesOn}></Device>
-        <Device title = "Heater" updateData = {updateDevicesOn}></Device>
-        <Device title = "TV" updateData = {updateDevicesOn}></Device>
-        <Text fontWeight="bold">Total Devices On: {devicesOn}</Text>
+        <Device title = "Living Room Lamps" updateData = {updateDevices}></Device>
+        <Device title = "Heater" updateData = {updateDevices}></Device>
+        <Device title = "TV" updateData = {updateDevices}></Device>
+        <Text style={{fontWeight: "bold", fontSize: 15}} fontWeight= "bold" fontWeight="25">Total Devices On: {devicesOn}</Text>
     </View>
     );
   }
@@ -67,6 +68,7 @@ export default function Devices() {
         fontSize: 20,
         fontWeight: "bold",
         marginVertical: 8,
+        flexGrow: 1
     },
 
     deviceText: {
@@ -81,17 +83,24 @@ export default function Devices() {
         padding: 5,
         alignItems: "center",
         marginBottom: 12,
-        justifyContent: "flex-start"
+        justifyContent: "space-between"
     },
 
     statusBox: {
         width: 20,
         height: 20,
-        marginEnd: 8
+        marginEnd: 12
+    },
+
+    indicatorContainer: {
+        flexDirection: "row", 
+        alignItems: "center",
+        padding: 8
+
     },
 
     buttonContainer: {
         flexDirection: "column",
-        alignSelf: "center"
+        alignSelf: "flex-end",
     }
   });
